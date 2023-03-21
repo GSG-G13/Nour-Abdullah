@@ -7,8 +7,9 @@
 }
 
 body {
-  background: #002158f7;
   padding: 0 20px;
+  background: #002158f7;
+  min-height: 100vh;
 }
 
 ::selection {
@@ -19,6 +20,7 @@ body {
 .top-section {
   max-width: 450px;
   margin: 150px auto;
+  transition: all 1s;
 }
 
 nav {
@@ -34,6 +36,7 @@ nav {
   border-radius: 5px;
   position: relative;
   box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+  transition: all 1s;
 }
 
 .search-input input {
@@ -45,6 +48,7 @@ nav {
   padding: 0 60px 0 20px;
   font-size: 18px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+  transition: all 1s;
 }
 
 .search-input.active input {
@@ -62,8 +66,42 @@ nav {
   font-size: 20px;
   color: #025ffc8f;
   cursor: pointer;
+  transition: all 1s;
 }
 
 .top-section.focus {
   margin: 75px auto;
+  transition: all 1s;
+}
+
+.popup {
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  padding-left: 1rem;
+  font-family: cursive;
+  display: flex;
+  align-items: center;
+  transition: all 1s;
+  background: linear-gradient(269deg, #eeeeee, #e9e9e9);
+  cursor: pointer;
+}
+
+.popup:not(:last-child) {
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.popup:hover {
+  background: linear-gradient(269deg, #dfdede, #d6d6d6);
+}
+.autocom-box {
+  transition: all 1s;
+}
+.autocom-box.close {
+  display: none;
+  transition: all 1s;
+}
+
+i {
+  padding-right: 1rem;
 }
