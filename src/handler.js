@@ -18,7 +18,8 @@ const handleCSS = (request, response, endpoint) => {
   const filePath = path.join(__dirname, "..", "public", ...endpoint.split("/"));
   fs.readFile(filePath, (error, file) => {
     if (error) {
-      handleErr(request, response);
+      response.writeHead(500, "Server");
+      response.end("<h1>Page Not Found</h1>");
       return;
     } else {
       response.writeHead(200, { "Content-Type": "text/css" });
@@ -28,10 +29,12 @@ const handleCSS = (request, response, endpoint) => {
 };
 
 const handleDom = (request, response) => {
-  const filePath = path.join(__dirname, "..", "public", "DOM.js");
+  const filePath = path.join(__dirname, "..", "publ ic", "DOM.js");
   fs.readFile(filePath, (error, file) => {
     if (error) {
-      handleErr(request, response);
+      // handleErr(request, response);
+      response.writeHead(500, "Server");
+      response.end("<h1>Page Not Found</h1>");
       return;
     } else {
       response.writeHead(200, { "Content-Type": "text/js" });
@@ -56,6 +59,8 @@ const handleErr = (request, response) => {
 
 const handleImg = (request, response, endpoint) => {
   const filePath = path.join(__dirname, "..", "public", ...endpoint.split("/"));
+  console.log(endpoint.split("/"));
+  console.log(filePath);
   fs.readFile(filePath, (error, file) => {
     if (error) {
       handleErr(request, response);

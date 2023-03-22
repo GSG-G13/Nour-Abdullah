@@ -8,7 +8,10 @@ const router = (request, response) => {
     handlers.handleCSS(request, response, endpoint);
   } else if (endpoint === "/DOM.js") {
     handlers.handleDom(request, response);
-  } else if (endpoint === "/assets/images/caveman.png") {
+  } else if (
+    endpoint === "/assets/images/caveman.png" ||
+    endpoint === "/assets/images/cave1.jpg"
+  ) {
     handlers.handleImg(request, response, endpoint);
   } else {
     handlers.handleErr(request, response);
