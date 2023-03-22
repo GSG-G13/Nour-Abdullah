@@ -27,12 +27,13 @@ body {
 
 nav {
   color: #00c280;
-  font-family: "FontAwesome";
+  text-transform: uppercase;
   display: flex;
   justify-content: center;
   letter-spacing: 1.3rem;
   margin-top: 2rem;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 span {
   font-family: "FontAwesome";
