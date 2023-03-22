@@ -38,8 +38,6 @@ const renderPopup = (arr) => {
 
     comBox.addEventListener("click", () => {
       getData(api + `now_playing?api_key=${apiKey}`, (result) => {
-        // console.log(result);
-        // console.log(comBox.textContent);
         let res = [];
         result.forEach((obj) => {
           if (obj.title.includes(comBox.textContent)) {
