@@ -29,7 +29,7 @@ const handleCSS = (request, response, endpoint) => {
 };
 
 const handleDom = (request, response) => {
-  const filePath = path.join(__dirname, "..", "publ ic", "DOM.js");
+  const filePath = path.join(__dirname, "..", "public", "DOM.js");
   fs.readFile(filePath, (error, file) => {
     if (error) {
       // handleErr(request, response);
@@ -59,8 +59,6 @@ const handleErr = (request, response) => {
 
 const handleImg = (request, response, endpoint) => {
   const filePath = path.join(__dirname, "..", "public", ...endpoint.split("/"));
-  console.log(endpoint.split("/"));
-  console.log(filePath);
   fs.readFile(filePath, (error, file) => {
     if (error) {
       handleErr(request, response);
