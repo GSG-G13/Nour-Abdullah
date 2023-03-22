@@ -1,6 +1,7 @@
 const apiKey = "b9da8a8928ade30c5680978edd9a4330";
 const api = "https://api.themoviedb.org/3/movie/";
 
+let boxSearch = document.querySelector(".search-input");
 let input = document.querySelector(".search-input input");
 let inputTop = document.querySelector(".top-section");
 let popup = document.querySelector(".autocom-box");
@@ -22,16 +23,6 @@ const getData = (url, cb) => {
   xhr.send();
 };
 
-input.addEventListener("focus", () => {
-  inputTop.classList.toggle("focus");
-  popup.classList.toggle("close");
-});
-
-input.addEventListener("blur", () => {
-  inputTop.classList.toggle("focus");
-  popup.classList.toggle("close");
-});
-
 const renderPopup = (arr) => {
   completeBox.textContent = "";
   arr.slice(0, 5).forEach((object) => {
@@ -44,6 +35,20 @@ const renderPopup = (arr) => {
     comBox.appendChild(icon);
     comBox.textContent = `${object.title}`;
     completeBox.appendChild(comBox);
+
+    comBox.addEventListener("click", () => {
+      getData(api + `now_playing?api_key=${apiKey}`, (result) => {
+        // console.log(result);
+        // console.log(comBox.textContent);
+        let res = [];
+        result.forEach((obj) => {
+          if (obj.title.includes(comBox.textContent)) {
+            res.push(obj);
+          }
+        });
+        renderCards(res);
+      });
+    });
   });
 };
 
@@ -94,4 +99,15 @@ input.addEventListener("keyup", (e) => {
   }
 });
 
+input.addEventListener("focus", () => {
+  inputTop.classList.toggle("focus");
+  popup.classList.toggle("close");
+});
 
+input.addEventListener("blur", () => {
+  inputTop.classList.toggle("focus");
+});
+
+boxSearch.addEventListener("mouseleave", () => {
+  popup.classList.toggle("close");
+});
