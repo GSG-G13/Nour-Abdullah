@@ -40,7 +40,6 @@ const renderPopup = (arr) => {
       getData(api + `now_playing?api_key=${apiKey}`, (result) => {
         let res = [];
         result.forEach((obj) => {
-          console.log(comBox.textContent);
           if (obj.title.includes(comBox.textContent)) {
             res.push(obj);
           }
