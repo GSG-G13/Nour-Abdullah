@@ -152,11 +152,11 @@ img {
   color: aliceblue;
   font-family: monospace;
   height: 50px;
-  /* margin-bottom: -13px; */
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: flex-start;
+  color: #ffeb3b;
 }
 
 .desc {
@@ -168,4 +168,8 @@ img {
   align-items: center;
   width: 100%;
   justify-content: flex-start;
+}
+
+.fa-film:before {
+  color: crimson;
 }

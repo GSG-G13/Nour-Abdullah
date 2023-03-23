@@ -28,18 +28,19 @@ const renderPopup = (arr) => {
   arr.slice(0, 5).forEach((object) => {
     const comBox = document.createElement("div");
     comBox.classList.add("popup");
+    comBox.textContent = `${object.title}`;
 
     const icon = document.createElement("i");
     icon.className = "fa-solid fa-film";
 
-    comBox.appendChild(icon);
-    comBox.textContent = `${object.title}`;
+    comBox.prepend(icon);
     completeBox.appendChild(comBox);
 
     comBox.addEventListener("click", () => {
       getData(api + `now_playing?api_key=${apiKey}`, (result) => {
         let res = [];
         result.forEach((obj) => {
+          console.log(comBox.textContent);
           if (obj.title.includes(comBox.textContent)) {
             res.push(obj);
           }
@@ -82,11 +83,8 @@ getData(api + `now_playing?api_key=${apiKey}`, (result) => {
 });
 
 input.addEventListener("keyup", (e) => {
-  if (!e.target.value) {
-    getData(api + `now_playing?api_key=${apiKey}`, (result) => {
-      renderCards(result);
-    });
-  } else {
+  popup.classList.remove("close");
+  if (e.target.value) {
     getData(
       api.replace("movie/", "search") +
         `/movie?api_key=${apiKey}&query=${e.target.value}&page=1`,
@@ -94,18 +92,24 @@ input.addEventListener("keyup", (e) => {
         renderPopup(result);
       }
     );
+  } else {
+    getData(api + `now_playing?api_key=${apiKey}`, (result) => {
+      renderCards(result);
+    });
   }
 });
 
 input.addEventListener("focus", () => {
-  inputTop.classList.toggle("focus");
-  popup.classList.toggle("close");
+  inputTop.classList.add("focus");
+  popup.classList.remove("close");
 });
 
-input.addEventListener("blur", () => {
-  inputTop.classList.toggle("focus");
-});
-
-boxSearch.addEventListener("mouseleave", () => {
-  popup.classList.toggle("close");
+document.addEventListener("click", (e) => {
+  if (
+    !e.target.classList.contains("sear") &&
+    !e.target.classList.contains("popup")
+  ) {
+    inputTop.classList.remove("focus");
+    popup.classList.add("close");
+  }
 });
